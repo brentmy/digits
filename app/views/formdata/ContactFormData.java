@@ -11,5 +11,7 @@ public String firstName = "";
 public String lastName = "";
 /** the F. */
 public String telephone = "";
+/** the Address. */
+public String address = "";
 
 }
