@@ -24,10 +24,12 @@ public class Application extends Controller {
   
   /**
    * Returns new contact form simple form.
+   * @param id.
    * @return The new Contact form.
    */
-  public static Result newContact() {
-    Form<ContactFormData> formData = Form.form(ContactFormData.class);
+  public static Result newContact(long id) {
+    ContactFormData form = id == 0 ? new ContactFormData() : new ContactFormData(ContactDB.getContact(id)); 
+    Form<ContactFormData> formData = Form.form(ContactFormData.class).fill(form);
     return ok(NewContact.render(formData));
     
   }

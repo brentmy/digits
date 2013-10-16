@@ -2,6 +2,7 @@ package views.formdata;
 
 import java.util.ArrayList;
 import java.util.List;
+import models.Contact;
 import play.data.validation.ValidationError;
 
 /**
@@ -11,13 +12,35 @@ import play.data.validation.ValidationError;
  */
 
 public class ContactFormData {
+
 private static final int TELEPHONE = 12;
-  /** the F. */
+/** ID #. */
+public long id;
+/** the First name. */
 public String firstName = "";
-/** the F. */
+/** the last name. */
 public String lastName = "";
-/** the F. */
+/** the telepone. */
 public String telephone = "";
+
+/**
+ * Empty constructor.
+ */
+public ContactFormData() {
+  //empty constructor 
+}
+
+/**
+ * @param contact the contact.
+ * 
+ */
+public ContactFormData(Contact contact) {
+  this.id = contact.getId();
+  this.firstName = contact.getFirstName();
+  this.lastName = contact.getLastName();
+  this.telephone = contact.getTelephone();
+  
+}
 
 /** Validates the form all fields can't be empty tel is 12 chars. 
  * @return list of errors.

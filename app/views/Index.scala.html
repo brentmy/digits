@@ -6,7 +6,11 @@
      <table class="table table-striped">
 <tr><th>First</th><th>Last</th><th>Phone</th></tr>
 @for(contact <- contacts){
-<tr><td>@contact.getFirstName()</th><th>@contact.getLastName()</th><th>@contact.getTelephone()</th></tr>
+<tr><td>@contact.getFirstName()</td>
+<td>@contact.getLastName()</td>
+<td>@contact.getTelephone()</td>
+<td><a href="@routes.Application.newContact(contact.getId())">Edit</a></td>
+</tr>
 }
 
 </table>
