@@ -36,6 +36,9 @@ public static Contact addContact(ContactFormData formData) {
   
   return contact;
    }
+public static void deleteContact(long id){
+  contacts.remove(id);
+}
 /**
  * 
  * @return contact
