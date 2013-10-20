@@ -33,7 +33,7 @@ public class Contact {
   }
   /** 
    * gets first name.
-   * @param firstName.
+   * @param firstName is.
    * 
    * */
   public void setFirstName(String firstName) {
@@ -48,7 +48,7 @@ public class Contact {
   }
   /** 
    * gets last name.
-   * @param lastName
+   * @param lastName is.
    * 
    * */
   public void setLastName(String lastName) {
@@ -63,7 +63,7 @@ public class Contact {
   }
   /** 
    * gets Telephone.
-   * @param telephone.
+   * @param telephone i.
    * */
   public void setTelephone(String telephone) {
     this.telephone = telephone;
