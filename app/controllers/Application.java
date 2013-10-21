@@ -1,11 +1,13 @@
 package controllers;
 
+import java.util.Map;
 import models.ContactDB;
 import play.mvc.Controller;
 import play.data.Form;
 import play.mvc.Result;
 import views.html.Index;
 import views.formdata.ContactFormData;
+import views.formdata.TelephoneType;
 import views.html.NewContact;
 import views.formdata.ContactFormData;
 
@@ -24,13 +26,14 @@ public class Application extends Controller {
   
   /**
    * Returns new contact form simple form.
-   * @param id.
+   * @param id s.
    * @return The new Contact form.
    */
   public static Result newContact(long id) {
     ContactFormData form = id == 0 ? new ContactFormData() : new ContactFormData(ContactDB.getContact(id)); 
     Form<ContactFormData> formData = Form.form(ContactFormData.class).fill(form);
-    return ok(NewContact.render(formData));
+    Map<String, Boolean> telephoneTypeMap = TelephoneType.getTypes(form.telephoneType);
+    return ok(NewContact.render(formData, telephoneTypeMap));
     
   }
   
@@ -43,13 +46,15 @@ public class Application extends Controller {
     
     if (formData.hasErrors()) {
       System.out.println("Errors");
-      return badRequest(NewContact.render(formData));
+      Map<String, Boolean> telephoneTypeMap = TelephoneType.types();
+      return badRequest(NewContact.render(formData, telephoneTypeMap));
     }
     
     else {
     ContactFormData data = formData.get();
     ContactDB.addContact(data);
-    return ok(NewContact.render(formData));
+    Map<String, Boolean> telephoneTypeMap = TelephoneType.getTypes(data.telephoneType);
+        return ok(NewContact.render(formData, telephoneTypeMap));
     }
   }
 }

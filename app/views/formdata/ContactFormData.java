@@ -22,6 +22,8 @@ public String firstName = "";
 public String lastName = "";
 /** the telepone. */
 public String telephone = "";
+/** Telephone Type. */
+public String telephoneType = "";
 
 /**
  * Empty constructor.
@@ -39,7 +41,7 @@ public ContactFormData(Contact contact) {
   this.firstName = contact.getFirstName();
   this.lastName = contact.getLastName();
   this.telephone = contact.getTelephone();
-  
+  this.telephoneType = contact.getTelephoneType();
 }
 
 /** Validates the form all fields can't be empty tel is 12 chars. 
@@ -59,6 +61,10 @@ public List<ValidationError> validate() {
   
   if (telephone.length() != TELEPHONE || telephone == null || telephone.length() == 0) {
     errors.add(new ValidationError("telephone", "Telephone number is not appropriate length"));
+   }
+  
+  if (!TelephoneType.isType(telephoneType)) {
+    errors.add(new ValidationError("telephoneType", "Invalid telephone Type"));
    }
   
   return (errors.isEmpty() ? null : errors);
