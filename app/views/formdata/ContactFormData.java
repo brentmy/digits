@@ -24,6 +24,8 @@ public String lastName = "";
 public String telephone = "";
 /** Telephone Type. */
 public String telephoneType = "";
+/** Telephone Type. */
+public String level = "";
 
 /**
  * Empty constructor.
@@ -42,6 +44,7 @@ public ContactFormData(Contact contact) {
   this.lastName = contact.getLastName();
   this.telephone = contact.getTelephone();
   this.telephoneType = contact.getTelephoneType();
+  this.level = contact.getLevel();
 }
 
 /** Validates the form all fields can't be empty tel is 12 chars. 

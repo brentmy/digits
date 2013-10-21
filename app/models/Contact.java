@@ -9,6 +9,7 @@ public class Contact {
   private String lastName;
   private String telephone;
   private String telephoneType;
+  private String level;
   
   /** 
    *
@@ -19,12 +20,13 @@ public class Contact {
    * @param telephoneType the telephone.
    * 
    * */
-  public Contact(long id, String firstName, String lastName, String telephone, String telephoneType) {
+  public Contact(long id, String firstName, String lastName, String telephone, String telephoneType, String level) {
     this.id = id;
     this.firstName = firstName;
     this.lastName = lastName;
     this.telephone = telephone;
     this.setTelephoneType(telephoneType);
+    this.setLevel(level);
     
   }
   /** 
@@ -88,6 +90,12 @@ public class Contact {
    */
   public void setTelephoneType(String telephoneType) {
     this.telephoneType = telephoneType;
+  }
+  public String getLevel() {
+    return level;
+  }
+  public void setLevel(String level) {
+    this.level = level;
   }
 
   

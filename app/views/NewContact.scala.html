@@ -1,4 +1,4 @@
-@(contactForm : Form[views.formdata.ContactFormData], telephoneTypeMap : Map[String, Boolean])
+@(contactForm : Form[views.formdata.ContactFormData], telephoneTypeMap : Map[String, Boolean], level : List[String])
 
 
 @import helper._
@@ -32,6 +32,11 @@
           label = "Telephone Type",
           optionMap = telephoneTypeMap,
           isMultiple = false,
+          help = "")
+          
+       @radiobuttons(contactForm("level"),
+          label = "Level",
+          buttonNameList = level,
           help = "")
            
     <div class="form-group">
