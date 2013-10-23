@@ -32,6 +32,23 @@ public ContactFormData() {
   //empty constructor 
 }
 
+
+
+/**
+ * @param firstName a.
+ * @param lastName b.
+ * @param telephone c.
+ * @param telephoneType d.
+ */
+public ContactFormData(String firstName, String lastName, String telephone, String telephoneType) {
+  this.firstName = firstName;
+  this.lastName = lastName;
+  this.telephone = telephone;
+  this.telephoneType = telephoneType;
+}
+
+
+
 /**
  * @param contact the contact.
  * 
