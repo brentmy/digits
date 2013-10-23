@@ -5,13 +5,13 @@
 @import bootstrap3._
 
 @Main("New Contact") {
-<h1>Add Contact</h1>
+
+
    <div class="container">
      @form(routes.Application.postContact(), 'class -> "form-horizontal"){
-     <input type="hidden"
-     name="@contactForm("id").name" 
-     id="@contactForm("id").id"
-     value="@contactForm("id").value">
+     
+     @hidden (contactForm("id"))
+     
      
        @text(contactForm("firstName"),
            label = "First Name",
@@ -23,10 +23,6 @@
            placeholder = "Last Name",
            help = "")
            
-       @text(contactForm("telephone"),
-           label = "Telephone",
-           placeholder = "XXX-XXX-XXXX",
-           help = "")
                 
        @Telephone(contactForm("telephone"),
                   contactForm("telephoneType"),
