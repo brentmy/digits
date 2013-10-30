@@ -1,7 +1,9 @@
 @(field: Field)
-
+<label class="col-sm-2 control-label" for="@field.id">ID</label>
 <input type="hidden"
      name="@field("id").name" 
      id="@field("id").id"
      value="@field("id").value">
+     
+     <span class="help-block">@{field.error.map { error => error.message }}</span>
      
