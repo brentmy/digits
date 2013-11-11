@@ -1,8 +1,10 @@
-@(contacts: List[Contact])
+@(page: String, isLoggedIn: Boolean, userInfo: UserInfo, contacts: List[Contact])
 
-@Main("Home") {
+@Main(page, isLoggedIn, userInfo) {
+
 <h1>Contacts</h1>
    <div class="container">
+   @if(isLoggedIn){
      <table class="table table-striped">
 <tr><th>First</th><th>Last</th><th>Phone</th><th>Type</th></tr>
 @for(contact <- contacts){
@@ -15,6 +17,6 @@
 }
 
 </table>
-
+}
    </div>
 }

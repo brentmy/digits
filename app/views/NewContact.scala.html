@@ -1,10 +1,10 @@
-@(contactForm : Form[views.formdata.ContactFormData], telephoneTypeMap : Map[String, Boolean])
+@(page: String, isLoggedIn: Boolean, userInfo: UserInfo, contactForm : Form[views.formdata.ContactFormData], telephoneTypeMap : Map[String, Boolean])
 
 
 @import helper._
 @import bootstrap3._
 
-@Main("New Contact") {
+@Main(page, isLoggedIn, userInfo) {
 <h1>Add Contact</h1>
    <div class="container">
      @form(routes.Application.postContact(), 'class -> "form-horizontal"){
