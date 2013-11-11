@@ -24,12 +24,12 @@ public class TelephoneType {
   }
   
   /**
-   * 
+   * @param telephoneType s.
    * @return telephoneType asc.
    */
   public static Map<String, Boolean> getTypes(String telephoneType) {
     Map<String, Boolean> typeMap = TelephoneType.types();
-    if (isType(telephoneType)){
+    if (isType(telephoneType)) {
     typeMap.put(telephoneType, true);
     }
     return typeMap;
