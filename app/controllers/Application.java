@@ -28,9 +28,9 @@ public class Application extends Controller {
    */
   @Security.Authenticated(Secured.class)
   public static Result index() {
-   UserInfo user = UserInfoDB.getUser(request().username());
-   String email = user.getEmail();
-   Boolean isLoggedIn = (user != null);
+    UserInfo user = UserInfoDB.getUser(request().username());
+    String email = user.getEmail();
+    Boolean isLoggedIn = (user != null);
     return ok(Index.render("Home", Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()),
         ContactDB.getContacts(email)));
   }
@@ -44,6 +44,7 @@ public class Application extends Controller {
   public static Result newContact(long id) {
     UserInfo user = UserInfoDB.getUser(request().username());
     String email = user.getEmail();
+    Boolean isLoggedIn = (user != null);
     ContactFormData form = id == 0 ? new ContactFormData() : new ContactFormData(ContactDB.getContact(email, id)); 
     Form<ContactFormData> formData = Form.form(ContactFormData.class).fill(form);
     Map<String, Boolean> telephoneTypeMap = TelephoneType.getTypes(form.telephoneType);
