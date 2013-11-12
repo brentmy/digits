@@ -2,6 +2,8 @@ package controllers;
 
 import java.util.Map;
 import models.ContactDB;
+import models.UserInfo;
+import models.UserInfoDB;
 import play.mvc.Controller;
 import play.mvc.Security;
 import play.data.Form;
@@ -24,9 +26,13 @@ public class Application extends Controller {
    * Returns the home page. 
    * @return The resulting home page. 
    */
-  
+  @Security.Authenticated(Secured.class)
   public static Result index() {
-    return ok(Index.render("Home", Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()), ContactDB.getContacts()));
+   UserInfo user = UserInfoDB.getUser(request().username());
+   String email = user.getEmail();
+   Boolean isLoggedIn = (user != null);
+    return ok(Index.render("Home", Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()),
+        ContactDB.getContacts(email)));
   }
   
   /**
@@ -36,7 +42,9 @@ public class Application extends Controller {
    */
   @Security.Authenticated(Secured.class)
   public static Result newContact(long id) {
-    ContactFormData form = id == 0 ? new ContactFormData() : new ContactFormData(ContactDB.getContact(id)); 
+    UserInfo user = UserInfoDB.getUser(request().username());
+    String email = user.getEmail();
+    ContactFormData form = id == 0 ? new ContactFormData() : new ContactFormData(ContactDB.getContact(email, id)); 
     Form<ContactFormData> formData = Form.form(ContactFormData.class).fill(form);
     Map<String, Boolean> telephoneTypeMap = TelephoneType.getTypes(form.telephoneType);
     return ok(NewContact.render("New", Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()), formData,
@@ -67,8 +75,10 @@ public class Application extends Controller {
     }
     
     else {
+      UserInfo user = UserInfoDB.getUser(request().username());
+      String email = user.getEmail();
     ContactFormData data = formData.get();
-    ContactDB.addContact(data);
+    ContactDB.addContact(email, data);
     Map<String, Boolean> telephoneTypeMap = TelephoneType.getTypes(data.telephoneType);
         return ok(NewContact.render("New", Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()), formData, 
             telephoneTypeMap));
