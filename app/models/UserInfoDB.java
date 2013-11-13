@@ -12,6 +12,27 @@ public class UserInfoDB {
   
   private static Map<String, UserInfo> userinfos = new HashMap<String, UserInfo>();
   
+  private static boolean admin = false;
+  
+  /**
+   * Adds the specified Administrator to the UserInfoDB.
+   * @param name Their name.
+   * @param email Their email.
+   * @param password Their password. 
+   */
+  public static void addAdmin(String name, String email, String password) {
+    if (email != null && password != null) {
+      admin = true;
+      addUserInfo(name, email, password);
+    }
+  }
+  /**
+   * Checks if the admin has been created.
+   * @return boolean admin if true or false. 
+   */
+  public static boolean adminExists() {
+    return admin;
+  }
   /**
    * Adds the specified user to the UserInfoDB.
    * @param name Their name.
