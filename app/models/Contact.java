@@ -1,32 +1,51 @@
 package models;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import play.db.ebean.Model;
 /** 
  *@author Brent.
  * 
  * */
-public class Contact {
+@Entity
+public class Contact extends Model {
+  
+  private static final long serialVersionUID = 1L;
+  @Id
   private long id;
   private String firstName;
   private String lastName;
   private String telephone;
   private String telephoneType;
   
+  @ManyToOne
+  private UserInfo userInfo;
+  
   /** 
    *
-   * @param id the id.
    * @param firstName the first name.
    * @param lastName the last name.
    * @param telephone the telephone.
    * @param telephoneType the telephone.
    * 
    * */
-  public Contact(long id, String firstName, String lastName, String telephone, String telephoneType) {
-    this.id = id;
+  public Contact(String firstName, String lastName, String telephone, String telephoneType) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.telephone = telephone;
     this.setTelephoneType(telephoneType);
     
   }
+  
+  /**
+   * 
+   * @return map of contacts
+   */
+  public static Finder<Long, Contact> find() {
+    return new Finder<Long, Contact>(Long.class, Contact.class);
+  }
+  
   /** 
    * gets first name.
    * @return first name.
@@ -88,6 +107,20 @@ public class Contact {
    */
   public void setTelephoneType(String telephoneType) {
     this.telephoneType = telephoneType;
+  }
+
+  /**
+   * @return the userInfo
+   */
+  public UserInfo getUserInfo() {
+    return userInfo;
+  }
+
+  /**
+   * @param userInfo the userInfo to set
+   */
+  public void setUserInfo(UserInfo userInfo) {
+    this.userInfo = userInfo;
   }
 
   

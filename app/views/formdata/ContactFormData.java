@@ -15,7 +15,7 @@ public class ContactFormData {
 
 private static final int TELEPHONE = 12;
 /** ID #. */
-public long id;
+public long id = -1;
 /** the First name. */
 public String firstName = "";
 /** the last name. */
