@@ -15,7 +15,6 @@ import views.formdata.ContactFormData;
 import views.formdata.LoginFormData;
 import views.formdata.TelephoneType;
 import views.html.NewContact;
-import views.formdata.ContactFormData;
 
  /**
  * Implements the controllers for this application.
@@ -45,7 +44,7 @@ public class Application extends Controller {
     UserInfo user = UserInfoDB.getUser(request().username());
     String email = user.getEmail();
     Boolean isLoggedIn = (user != null);
-    ContactFormData form = id == 0 ? new ContactFormData() : new ContactFormData(ContactDB.getContact(email, id)); 
+    ContactFormData form = id == -1 ? new ContactFormData() : new ContactFormData(ContactDB.getContact(email, id)); 
     Form<ContactFormData> formData = Form.form(ContactFormData.class).fill(form);
     Map<String, Boolean> telephoneTypeMap = TelephoneType.getTypes(form.telephoneType);
     return ok(NewContact.render("New", Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()), formData,

@@ -17,6 +17,7 @@ public class ContactDB {
  /**
   * Updates contact if 0 and reupdate if not.
   * @param email for user, formData the form data.
+  * @param formData is form data.
   * @return contact
   */
 public static Contact addContact(String email, ContactFormData formData) {
@@ -41,7 +42,8 @@ public static List<Contact> getContacts(String email) {
 }
 /**
  * gets contact.
- * @param id id. email email.
+ * @param email email.
+ * @param id id.
  * @return contact
  */
 public static Contact getContact(String email, long id)  {
