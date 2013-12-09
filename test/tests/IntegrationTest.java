@@ -1,4 +1,4 @@
-package test;
+package tests;
 
 import org.junit.Test;
 import play.test.TestBrowser;
@@ -21,11 +21,11 @@ public class IntegrationTest {
    * Check to see that the two pages can be displayed.
    */
   @Test
-  public void test() {
+  public void testRetrieval() {
     running(testServer(PORT, fakeApplication(inMemoryDatabase())), HTMLUNIT, new Callback<TestBrowser>() {
       public void invoke(TestBrowser browser) {
         browser.goTo("http://localhost:3333");
-        assertThat(browser.pageSource()).contains("home page");
+        assertThat(browser.pageSource()).contains("digits");
 
         browser.goTo("http://localhost:3333/page1");
         assertThat(browser.pageSource()).contains("Page1");
